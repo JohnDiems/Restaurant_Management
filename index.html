@@ -1,23 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>L'Ambroisie Bistro - Order Management System</title>
-    
-    
+
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
-    
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap"
+        rel="stylesheet">
+
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    
-    <link rel="stylesheet" href="assets/css/styles.css?v=1.6">
+
+
+    <link rel="stylesheet" href="assets/css/styles.css">
 </head>
+
 <body>
-    
+
     <header class="app-header">
         <div class="logo">
             <i class="fa-solid fa-utensils gold-icon"></i>
@@ -46,21 +50,21 @@
     </header>
 
     <main class="app-content">
-        
+
         <div id="toast-container" class="toast-container"></div>
 
-        
+
         <section id="order-section" class="tab-content active">
             <div class="container grid-2">
-                
+
                 <div class="glass-card">
                     <div class="card-header">
                         <h2><i class="fa-solid fa-feather-pointed"></i> Create Customer Order</h2>
                         <p>Fill in customer details and compose the order from the menu.</p>
                     </div>
-                    
-                    <form id="order-form" novalidate>
-                        
+
+                    <form id="order-form" onsubmit="event.preventDefault();" novalidate>
+
                         <div class="form-group-row">
                             <div class="form-group">
                                 <label for="cust-name">Customer Name *</label>
@@ -70,7 +74,30 @@
                                 </div>
                                 <span class="error-msg" id="err-cust-name">Name is required.</span>
                             </div>
+                        </div>
 
+                        <div class="form-group-row">
+                            <div class="form-group">
+                                <label for="cust-email">Email Address *</label>
+                                <div class="input-wrapper">
+                                    <i class="fa-regular fa-envelope input-icon"></i>
+                                    <input type="email" id="cust-email" placeholder="e.g., john@example.com" required>
+                                </div>
+                                <span class="error-msg" id="err-cust-email">Enter a valid email address.</span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="cust-phone">Phone Number *</label>
+                                <div class="input-wrapper">
+                                    <i class="fa-solid fa-phone input-icon"></i>
+                                    <input type="tel" id="cust-phone" placeholder="e.g., 09123456789" required>
+                                </div>
+                                <span class="error-msg" id="err-cust-phone">Phone is required.</span>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group-row">
                             <div class="form-group">
                                 <label for="table-num">Table Number *</label>
                                 <div class="input-wrapper">
@@ -81,7 +108,7 @@
                             </div>
                         </div>
 
-                        
+
                         <div class="menu-selector-box">
                             <h3><i class="fa-solid fa-plus-circle"></i> Add Dishes to Order</h3>
                             <div class="form-group-row items-adder">
@@ -109,12 +136,13 @@
                             </div>
                         </div>
 
-                        
+
                         <div class="form-group">
                             <label for="special-notes">Special Instructions (Allergies, customizations...)</label>
                             <div class="input-wrapper">
                                 <i class="fa-regular fa-comment-dots input-icon textarea-icon"></i>
-                                <textarea id="special-notes" rows="2" placeholder="e.g., Extra cheese, sauce on the side..."></textarea>
+                                <textarea id="special-notes" rows="2"
+                                    placeholder="e.g., Extra cheese, sauce on the side..."></textarea>
                             </div>
                         </div>
 
@@ -125,25 +153,25 @@
                     </form>
                 </div>
 
-                
+
                 <div class="glass-card flex-column">
                     <div class="card-header">
                         <h2><i class="fa-solid fa-basket-shopping"></i> Order Basket</h2>
                         <p>Real-time calculation of your current selections.</p>
                     </div>
 
-                    
+
                     <div class="basket-container flex-grow">
                         <div id="empty-basket" class="empty-state">
                             <i class="fa-solid fa-bag-shopping empty-icon"></i>
                             <p>Your basket is empty. Add menu items from the left selector.</p>
                         </div>
                         <ul id="basket-items-list" class="basket-list hidden">
-                            
+
                         </ul>
                     </div>
 
-                    
+
                     <div class="basket-summary">
                         <div class="summary-row">
                             <span>Subtotal:</span>
@@ -163,7 +191,7 @@
             </div>
         </section>
 
-        
+
         <section id="dashboard-section" class="tab-content">
             <div class="container">
                 <div class="dashboard-controls glass-card">
@@ -173,11 +201,11 @@
                     </div>
                     <div class="dashboard-actions">
                         <div class="filter-group">
-                            <button class="filter-btn active" data-filter="all">All <span class="filter-count" id="count-all">0</span></button>
-                            <button class="filter-btn" data-filter="Pending">Pending <span class="filter-count" id="count-pending">0</span></button>
-                            <button class="filter-btn" data-filter="Preparing">Preparing <span class="filter-count" id="count-preparing">0</span></button>
-                            <button class="filter-btn" data-filter="Served">Served <span class="filter-count" id="count-served">0</span></button>
-                            <button class="filter-btn" data-filter="Completed">Completed <span class="filter-count" id="count-completed">0</span></button>
+                            <button class="filter-btn active" data-filter="all">All</button>
+                            <button class="filter-btn" data-filter="Pending">Pending</button>
+                            <button class="filter-btn" data-filter="Preparing">Preparing</button>
+                            <button class="filter-btn" data-filter="Served">Served</button>
+                            <button class="filter-btn" data-filter="Completed">Completed</button>
                         </div>
                         <button id="refresh-dashboard-btn" class="btn btn-secondary">
                             <i class="fa-solid fa-arrows-rotate"></i> Refresh
@@ -185,19 +213,19 @@
                     </div>
                 </div>
 
-                
+
                 <div id="dashboard-loader" class="dashboard-grid hidden">
                     <div class="glass-card skeleton-card"></div>
                     <div class="glass-card skeleton-card"></div>
                     <div class="glass-card skeleton-card"></div>
                 </div>
 
-                
+
                 <div id="orders-grid" class="dashboard-grid">
-                    
+
                 </div>
 
-                
+
                 <div id="empty-dashboard" class="empty-state glass-card hidden">
                     <i class="fa-solid fa-kitchen-set empty-icon"></i>
                     <h3>No Active Orders Found</h3>
@@ -206,17 +234,18 @@
             </div>
         </section>
 
-        
+
         <section id="menu-section" class="tab-content">
             <div class="container">
                 <div class="menu-intro glass-card text-center">
                     <h2><i class="fa-solid fa-crown gold-icon"></i> L'Ambroisie Menu Cards</h2>
-                    <p class="italic">Explore our curated selection of gourmet starters, exquisite mains, premium desserts, and artisanal beverages.</p>
+                    <p class="italic">Explore our curated selection of gourmet starters, exquisite mains, premium
+                        desserts, and artisanal beverages.</p>
                 </div>
 
-                
+
                 <div id="menu-cards-grid" class="menu-grid">
-                    
+
                 </div>
             </div>
         </section>
@@ -228,7 +257,7 @@
                         <h2 id="menu-form-title"><i class="fa-solid fa-plus-circle"></i> Add Menu Item</h2>
                         <p id="menu-form-desc">Create a new dish or select an existing one to edit.</p>
                     </div>
-                    <form id="menu-item-form" novalidate>
+                    <form id="menu-item-form" onsubmit="event.preventDefault();" novalidate>
                         <input type="hidden" id="menu-item-id" value="">
                         <div class="form-group">
                             <label for="menu-name">Dish Name *</label>
@@ -243,7 +272,8 @@
                                 <label for="menu-price">Price ($) *</label>
                                 <div class="input-wrapper">
                                     <i class="fa-solid fa-dollar-sign input-icon"></i>
-                                    <input type="text" id="menu-price" inputmode="decimal" placeholder="e.g., 9.99" required>
+                                    <input type="text" id="menu-price" inputmode="decimal" placeholder="e.g., 9.99"
+                                        required>
                                 </div>
                                 <span class="error-msg" id="err-menu-price">Enter a valid positive price.</span>
                             </div>
@@ -266,7 +296,8 @@
                             <label for="menu-desc">Description</label>
                             <div class="input-wrapper">
                                 <i class="fa-solid fa-align-left input-icon textarea-icon"></i>
-                                <textarea id="menu-desc" rows="3" placeholder="e.g., Crispy golden fries seasoned with truffle oil and parmesan cheese..."></textarea>
+                                <textarea id="menu-desc" rows="3"
+                                    placeholder="e.g., Crispy golden fries seasoned with truffle oil and parmesan cheese..."></textarea>
                             </div>
                         </div>
                         <div class="form-group-row">
@@ -279,7 +310,7 @@
                         </div>
                     </form>
                 </div>
-                
+
                 <div class="glass-card flex-column">
                     <div class="card-header">
                         <h2><i class="fa-solid fa-list-check"></i> Menu Listings</h2>
@@ -298,12 +329,13 @@
         </section>
     </main>
 
-    
+
     <footer class="app-footer">
-        <p>&copy; 2026 L'Ambroisie Bistro. Designed for Web Development Performance Task (3-Tier Architecture).</p>
+        <p>&copy; 2026 L'Ambroisie Bistro. Designed for Web Development</p>
     </footer>
 
-    
-    <script src="assets/js/app.js?v=1.6"></script>
+
+    <script src="assets/js/app.js"></script>
 </body>
+
 </html>
